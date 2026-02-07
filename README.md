@@ -1,3 +1,3 @@
 # node-eхаmple
 
-## Примеры и задания из урока Node.js event loop
+## Примеры и задания курса "Backend на Node.js" GLO Academy
