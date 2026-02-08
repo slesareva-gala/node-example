@@ -59,3 +59,6 @@ setTimeout(() => {
 setTimeout(() => {
   sendMessage('Gala', 'Hello, Node!');
 }, 2100);
+setTimeout(() => {
+  sendMessage('Node', 'Учись, студент! Солнце ещё не взошло.');
+}, 7050);
