@@ -1,0 +1,28 @@
+{
+  "name": "lesson00",
+  "version": "1.0.0",
+  "description": "lesson node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "lint": "eslint . --fix"
+  },
+  "type": "module",
+  "keywords": [
+    "node",
+    "app"
+  ],
+  "author": {
+    "name": "Gala Slesareva",
+    "email": "galaslesareva@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-prettier": "^5.5.5",
+    "nodemon": "^3.1.11",
+    "prettier": "3.2.5"
+  }
+}
