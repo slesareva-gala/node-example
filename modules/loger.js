@@ -66,7 +66,7 @@ export class Logger extends EventEmitter {
 
   async rotateLog() {
     try {
-      const fileBak = this.filename.replace(/\..*/, '') + Date.now() + '.bar';
+      const fileBak = this.filename.replace(/\..*/, '') + Date.now() + '.bak';
       await copyFile(this.filename, fileBak);
       await truncate(this.filename, 0);
     } catch (e) {
