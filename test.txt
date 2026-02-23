@@ -1,0 +1,6 @@
+[test1]
+Привет мир!
+[test2]
+Hello world!
+[test3]
+Stream Ready Steady Go
