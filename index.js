@@ -16,6 +16,7 @@ const quizJS = new Quiz(
 Желаем вам правильных ответов на все ${questions.length} вопросов!
 `,
   questions,
+  'progress',
 );
 
 quizJS.start();

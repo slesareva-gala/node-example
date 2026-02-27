@@ -1,64 +1,105 @@
 import process from 'node:process';
 import readline from 'node:readline/promises';
 
+import { st, say, newline, clear, pos, box } from './design.js';
+
 export class Quiz {
   #currentQuestions = 0;
+  #qtyAnswer = 0;
   #correctAnswer = 0;
-  #palette = {
-    red: '\x1b[31m',
-    green: '\x1b[32m',
-    yellow: '\x1b[33m',
-    blue: '\x1b[34m',
-    purple: '\x1b[35m',
-    cyan: '\x1b[36m',
-    white: '\x1b[37m',
-  };
+  #processAnswer = '';
+  #rl = null;
 
-  #say(str, color, newLine = true) {
-    process.stdout.write(`${newLine ? '\n' : ''}${color || ''}${str}`);
-  }
-
-  constructor(manual, questions) {
+  constructor(manual, questions, mode) {
     this.manual = manual;
     this.questions = questions;
-    this.rl = null;
+    this.mode = mode === 'progress';
   }
 
   start() {
-    this.rl = readline.createInterface({
+    this.#rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
     });
 
-    this.#say(
-      this.manual || 'Приветствую в квиз! Вводите номера правильных ответов.',
-      this.#palette.green,
-    );
-    this.block();
+    if (!this.mode) this.sayManual();
+    this.next(0);
+  }
+
+  next(i = 1) {
+    if (this.#currentQuestions < this.questions.length - 1) {
+      this.#currentQuestions += i;
+      this.block();
+    } else this.stop();
   }
 
   stop() {
-    const isAllBlock = this.#currentQuestions === this.questions.length - 1;
-
-    this.#say('', this.#palette[isAllBlock ? 'cyan' : 'yellow']);
-    this.#say(isAllBlock ? 'Квиз завершен.' : 'Квиз прерван.');
-
-    this.#say(
-      `Пройдено блоков квиза - ${this.#currentQuestions + (isAllBlock ? 1 : 0)}`,
-    );
-    this.#say(
-      `Правильных ответов - ${this.#correctAnswer}`,
-      this.#palette.green,
-    );
-    this.#say('');
-    this.rl.close();
+    this.sayResult();
+    this.#rl.close();
   }
 
-  next() {
-    if (this.#currentQuestions < this.questions.length - 1) {
-      this.#currentQuestions++;
-      this.block();
-    } else this.stop();
+  sayManual() {
+    say(
+      this.manual || 'Приветствую в квиз! Вводите номера правильных ответов.',
+      'green',
+    );
+  }
+
+  sayProcess() {
+    const qty = this.questions.length;
+    box(1, 1, 6, Math.max(22, qty + 12), 'magenta');
+    pos(2, 4);
+    say(
+      `Ответов: ${this.#qtyAnswer} из ${this.questions.length}`,
+      'cyan',
+      false,
+    );
+    box(3, 4, 3, qty + 6, 'magenta');
+    pos(4, 7);
+    say(''.padStart(qty), 'bgGray', false);
+    pos(4, 7);
+    say(this.#processAnswer, '', false);
+    pos(7, 1);
+  }
+
+  sayBlockResult(isCorrect) {
+    if (isCorrect) {
+      say('Правильный ответ!', 'green', false);
+      this.#correctAnswer++;
+      if (this.mode) this.#processAnswer += st(' ', 'bgGreen');
+    } else {
+      say('Не правильный ответ.', 'red', false);
+      if (this.mode) this.#processAnswer += st(' ', 'bgRed');
+    }
+    this.#qtyAnswer++;
+  }
+
+  sayResult() {
+    const isAllBlock = this.#qtyAnswer === this.questions.length;
+    const messageText = isAllBlock ? 'КВИЗ ЗАВЕРШЕН:' : 'КВИЗ ПРЕРВАН:';
+    const messageColor = isAllBlock ? 'cyan' : 'yellow';
+
+    if (this.mode) {
+      clear();
+      this.sayProcess();
+    } else newline();
+
+    say(messageText, messageColor + 'Bright');
+
+    say(`- всего вопросов ....... ${this.questions.length}`, messageColor);
+    say(`- всего ответов ........ ${this.#qtyAnswer}`, messageColor);
+    say(`- правильных ответов ... ${this.#correctAnswer}`, 'greenBright');
+    newline();
+  }
+
+  async getBlock(n, block) {
+    say(`Вопрос ${n + 1}: ${block.question}`, 'cyan');
+    say(`Варианты ответов:`, 'white');
+    block.options.forEach((option, i) => {
+      say(`${i + 1}. ${option}`);
+    });
+    newline(this.mode + 1);
+    return +(await this.#rl.question(st('Ваш ответ: ', 'cyan')));
   }
 
   async block() {
@@ -66,27 +107,17 @@ export class Quiz {
       const n = this.#currentQuestions;
       const block = this.questions[n];
 
-      this.#say('', this.#palette.cyan);
-      this.#say(`Вопрос ${n + 1}: ${block.question}`);
-      this.#say('', this.#palette.white, false);
-      this.#say(`Варианты ответов:`);
-      block.options.forEach((option, i) => {
-        this.#say(`${i + 1}. ${option}`);
-      });
+      if (this.mode) {
+        clear();
+        if (n === 0) this.sayManual();
+        else this.sayProcess();
+      } else newline();
 
-      this.#say('', this.#palette.cyan, false);
-      const answer = +(await this.rl.question('Ваш ответ: '));
+      const answer = await this.getBlock(n, block);
+      const isValid = this.validate(answer, block.options.length);
 
-      if (this.validate(answer, block.options.length)) {
-        if (answer === block.correctIndex + 1) {
-          this.#say('Правильный ответ!', this.#palette.green, false);
-          this.#correctAnswer++;
-          this.next();
-        } else {
-          this.#say('Не правильный ответ.', this.#palette.red, false);
-          this.next();
-        }
-      } else this.block();
+      if (isValid) this.sayBlockResult(answer === block.correctIndex + 1);
+      this.next(isValid + 0);
     } catch (e) {
       this.stop();
       if (e.code !== 'ABORT_ERR') {
