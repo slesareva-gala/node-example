@@ -6,7 +6,7 @@ const makePath = (file, isHome) =>
   isHome ? path.join(os.homedir(), file) : `.${path.sep}${file}`;
 
 const pathInit = makePath('todo.ini', true);
-const pathData = await read(pathInit, makePath('todo.json'));
+const pathData = (await read(pathInit)) || makePath('todo.json');
 
 const saveData = async (data, maskPath) => {
   const pathDataNew = ['here', 'home'].includes(maskPath)
@@ -30,7 +30,7 @@ const saveData = async (data, maskPath) => {
 };
 
 export const execution = async args => {
-  const data = await read(pathData);
+  const data = (await read(pathData)) || [];
 
   if (args.command === 'save') {
     await saveData(data, args.maskPath);
