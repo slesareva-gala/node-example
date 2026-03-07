@@ -1,19 +1,28 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, rm } from 'node:fs/promises';
 
-export const read = async pathFile => {
+export const read = async (pathFile, errValue = []) => {
   try {
-    const result = await readFile(pathFile, 'utf-8');
-    return result;
+    const data = await readFile(pathFile, 'utf-8');
+    return JSON.parse(data);
   } catch (err) {
-    throw new Error(err.message);
+    return errValue;
   }
 };
 
-export const write = async (pathFile, data) => {
+export const write = async (pathFile, data, errValue = false) => {
   try {
-    await writeFile(pathFile, data, 'utf-8');
+    await writeFile(pathFile, JSON.stringify(data), 'utf-8');
     return true;
-  } catch (err) {
-    throw new Error(err.message);
+  } catch (e) {
+    return errValue;
+  }
+};
+
+export const remove = async (pathFile, errValue = false) => {
+  try {
+    await rm(pathFile);
+    return true;
+  } catch (e) {
+    return errValue;
   }
 };

@@ -1,25 +1,41 @@
-import { read, write } from './files.system.js';
-const pathData = './todo.json';
+import { read, write, remove } from './files.system.js';
+import os from 'node:os';
+import path from 'node:path';
 
-const readData = async () => {
-  try {
-    const data = await read(pathData);
-    return JSON.parse(data);
-  } catch (e) {
-    return [];
-  }
-};
+const makePath = (file, isHome) =>
+  isHome ? path.join(os.homedir(), file) : `.${path.sep}${file}`;
 
-const writeData = async data => {
-  try {
-    await write(pathData, JSON.stringify(data));
-  } catch (e) {
-    console.log('Ошибка записи. Изменения не сохранены', e);
+const pathInit = makePath('todo.ini', true);
+const pathData = await read(pathInit, makePath('todo.json'));
+
+const saveData = async (data, maskPath) => {
+  const pathDataNew = ['here', 'home'].includes(maskPath)
+    ? makePath('todo.json', maskPath === 'home')
+    : pathData;
+  const isRename = pathData !== pathDataNew;
+
+  if (
+    !(await write(pathDataNew, data)) ||
+    !(await write(pathInit, pathDataNew))
+  ) {
+    console.log(
+      `Ошибка ${isRename ? 'переноса' : 'записи'} архива задач в '${pathDataNew}'`,
+    );
+    return;
   }
+  if (isRename) {
+    await remove(pathData);
+  }
+  console.log(`Архив задач ${isRename ? 'перемещен ' : ''}в '${pathDataNew}'`);
 };
 
 export const execution = async args => {
-  const data = await readData();
+  const data = await read(pathData);
+
+  if (args.command === 'save') {
+    await saveData(data, args.maskPath);
+    return;
+  }
 
   if (data.length === 0 && args.command !== 'add') {
     console.log(`Задачи отсутствуют:\ntodo add <новая задача>`);
@@ -76,5 +92,7 @@ export const execution = async args => {
       console.log(`Задача с идентификатором ${args.id} удалена`);
       break;
   }
-  writeData(data);
+  if (!(await write(pathData, data))) {
+    console.log('Ошибка записи. Изменения не сохранены');
+  }
 };
