@@ -1,0 +1,42 @@
+# ! /bin/bash
+
+echo '$ node gz'
+node gz
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node gz help'
+node gz help
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node gz pack ".\files\horse.jpeg"'
+node gz pack ".\files\horse.jpeg"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node gz unpack ".\files\horse_jpeg.gz"'
+node gz unpack ".\files\horse_jpeg.gz"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node gz pack ".\files\lorem.txt"'
+node gz pack ".\files\lorem.txt"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+
+clear
+echo '$ node gz unpack ".\files\lorem_txt.gz"'
+node gz unpack ".\files\lorem_txt.gz"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+
+clear
+echo '$ node gz pack ".\files\zem.mp3"'
+node gz pack ".\files\zem.mp3"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+
+clear
+echo '$ node gz unpack ".\files\zem_mp3.gz"'
+node gz unpack ".\files\zem_mp3.gz"
