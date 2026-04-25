@@ -1,0 +1,30 @@
+{
+  "DOGE": [
+    { "timestamp": 1777139539615, "price_USD": 0.09782, "price_EUR": 0.08353 },
+    { "timestamp": 1777139546110, "price_USD": 0.09783, "price_EUR": 0.08353 },
+    { "timestamp": 1777139549342, "price_USD": 0.09783, "price_EUR": 0.08353 },
+    { "timestamp": 1777139554532, "price_USD": 0.09783, "price_EUR": 0.08353 },
+    { "timestamp": 1777139559801, "price_USD": 0.09783, "price_EUR": 0.08353 }
+  ],
+  "ETC": [
+    { "timestamp": 1777139539615, "price_USD": 8.43, "price_EUR": 7.191 },
+    { "timestamp": 1777139546110, "price_USD": 8.43, "price_EUR": 7.191 },
+    { "timestamp": 1777139549342, "price_USD": 8.43, "price_EUR": 7.191 },
+    { "timestamp": 1777139554532, "price_USD": 8.43, "price_EUR": 7.191 },
+    { "timestamp": 1777139559801, "price_USD": 8.43, "price_EUR": 7.191 }
+  ],
+  "ETH": [
+    { "timestamp": 1777139539615, "price_USD": 2310.28, "price_EUR": 1972.06 },
+    { "timestamp": 1777139546110, "price_USD": 2310.25, "price_EUR": 1972.07 },
+    { "timestamp": 1777139549342, "price_USD": 2310.25, "price_EUR": 1972.06 },
+    { "timestamp": 1777139554532, "price_USD": 2310.4, "price_EUR": 1972.18 },
+    { "timestamp": 1777139559801, "price_USD": 2310.4, "price_EUR": 1972.07 }
+  ],
+  "LTC": [
+    { "timestamp": 1777139539615, "price_USD": 56.23, "price_EUR": 48.02 },
+    { "timestamp": 1777139546110, "price_USD": 56.24, "price_EUR": 48.02 },
+    { "timestamp": 1777139549342, "price_USD": 56.23, "price_EUR": 48.02 },
+    { "timestamp": 1777139554532, "price_USD": 56.24, "price_EUR": 48.02 },
+    { "timestamp": 1777139559801, "price_USD": 56.24, "price_EUR": 48 }
+  ]
+}

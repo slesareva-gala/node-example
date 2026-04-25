@@ -1,0 +1,308 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: crypto
+meta:
+  id: wrk_75545420c66549d29c5a44924a457f7e
+  created: 1776952647676
+  modified: 1776952647676
+  description: ""
+collection:
+  - url: http://localhost:3000/crypto
+    name: all tickers
+    meta:
+      id: req_10efe7801c2042e0b90e342066d8be73
+      created: 1776952671124
+      modified: 1776954981201
+      isPrivate: false
+      description: ""
+      sortKey: -1776952671124
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto?step=2
+    name: all tickers+step
+    meta:
+      id: req_98c0c1f5168d4edd87341be9cff455a8
+      created: 1776952821894
+      modified: 1777136409699
+      isPrivate: false
+      description: ""
+      sortKey: -1776952476507
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto?tickers=BTC
+    name: one ticker
+    meta:
+      id: req_3c166f9192154a91929ed0daa6491058
+      created: 1776952894481
+      modified: 1777128064012
+      isPrivate: false
+      description: ""
+      sortKey: -1776952379198.5
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto?tickers=btc&step=5
+    name: one ticker + step
+    meta:
+      id: req_6df6d328317b4d108321b2551f1587ff
+      created: 1776952949762
+      modified: 1776955020649
+      isPrivate: false
+      description: ""
+      sortKey: -1776952330544.25
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto?tickers=btc , doge
+    name: many ticker
+    meta:
+      id: req_c827c2871d4d4c0db7a724dc728e41d1
+      created: 1776953032972
+      modified: 1777052498485
+      isPrivate: false
+      description: ""
+      sortKey: -1776952306217.125
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto?tickers=btc,doge&step=2
+    name: many ticker + step
+    meta:
+      id: req_31c123e1a2494a15963788f009b79865
+      created: 1776953079379
+      modified: 1776955042914
+      isPrivate: false
+      description: ""
+      sortKey: -1776952294053.5625
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto
+    name: "add ticker "
+    meta:
+      id: req_55ff9e422702450ca4a2c9437d870365
+      created: 1776953330899
+      modified: 1777071585098
+      isPrivate: false
+      description: ""
+      sortKey: -1776952287971.7812
+    method: POST
+    body:
+      mimeType: application/json
+      text: '"doge"'
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto
+    name: add tickers
+    meta:
+      id: req_68f3bdcf0de045d29150e0d3bedb6e48
+      created: 1776954499456
+      modified: 1777071733003
+      isPrivate: false
+      description: ""
+      sortKey: -1776952284930.8906
+    method: POST
+    body:
+      mimeType: application/json
+      text: '["doge","etc","eth","ltc"]'
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto?tickers=doge
+    name: remove ticker
+    meta:
+      id: req_2d2ecfa4792f419e969f1eb2100cfc9d
+      created: 1776954730465
+      modified: 1777139495771
+      isPrivate: false
+      description: ""
+      sortKey: -1776952283410.4453
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto?tickers=btc,eth,doge
+    name: remove tickers
+    meta:
+      id: req_cdacea054df342caaadad13662039af5
+      created: 1776954938239
+      modified: 1777138083009
+      isPrivate: false
+      description: ""
+      sortKey: -1776952282650.2227
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypt123
+    name: fake res
+    meta:
+      id: req_6a0b147ab9a94b6f9101dcd8c85d0179
+      created: 1776965648769
+      modified: 1776965673516
+      isPrivate: false
+      description: ""
+      sortKey: -1776952282270.1113
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/crypto
+    name: fake add tickers
+    meta:
+      id: req_f65291a52151401bbc04355c1b99218e
+      created: 1777063745730
+      modified: 1777063780867
+      isPrivate: false
+      description: ""
+      sortKey: -1776952284170.668
+    method: POST
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_616cbc3bb4ba18173339da595d094ff3d137b396
+    created: 1776952647680
+    modified: 1776952647680
+environments:
+  name: Base Environment
+  meta:
+    id: env_616cbc3bb4ba18173339da595d094ff3d137b396
+    created: 1776952647678
+    modified: 1776954667710
+    isPrivate: false
