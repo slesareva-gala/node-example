@@ -1,0 +1,42 @@
+# ! /bin/bash
+
+echo '$ node todo'
+node todo
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node todo help'
+node todo help
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node todo add "Пройти курс NodeJS"'
+node todo add "Пройти курс NodeJS"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node todo list'
+node todo list
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node todo get 5'
+node todo get 5
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node todo update 5 "Подключиться к PostgreSQL"'
+node todo update 5 "Подключиться к PostgreSQL"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node todo status 5 "выполнено"'
+node todo status 5 "выполнено"
+read -p "$ нажмите любую клавишу для продолжения или < ctrl-c > для выхода"
+
+clear
+echo '$ node todo delete 6'
+node todo delete 6
+
+node todo list
+
