@@ -15,7 +15,6 @@ const knex = new Knex({
 
 const table = 'tasks';
 
-//"tasks_id_seq"
 export const addTask = async ({ task, status }) => {
   const result = await knex(table)
     .insert({ task, status })
