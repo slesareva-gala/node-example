@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тест с отправкой файла</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="indexFD.js" defer></script>
+  </head>
+
+  <body>
+    <div class="center">
+      <form class="form-input" action="http://localhost:3000/upload/fd">
+        <label class="label" for="file-ip-1">Добавить</label>
+        <input
+          type="file"
+          name="file"
+          class="file"
+          id="file-ip-1"
+          accept="image/*"
+        />
+
+        <div class="wrapper">
+          <img class="preview" id="file-ip-1-preview" />
+        </div>
+        <button class="submit" type="submit">Отправить</button>
+      </form>
+    </div>
+  </body>
+</html>
